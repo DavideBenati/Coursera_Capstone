@@ -335,6 +335,50 @@ export const articles: Article[] = [
     references: [postpartumSource],
   }),
   article({
+    id: "messaggio-nascita",
+    title: "Messaggio di nascita per amici e parenti",
+    subtitle:
+      "Un testo da personalizzare per condividere la gioia e organizzare le prime visite a casa.",
+    categoryId: "home",
+    stage: "postpartum",
+    weekFrom: 0,
+    weekTo: 6,
+    imageUrl: photo("photo-1519689680058-324335c77eba"),
+    sections: [
+      section(
+        "Un annuncio con i vostri tempi",
+        "Il documento “messaggio nascita.docx” propone un messaggio che il papà può inviare ad amici e parenti per condividere il momento felice e concordare le prime visite a casa.",
+        "Qui trovi il testo completo. Puoi selezionarlo per copiarlo e adattarlo alla tua famiglia prima di condividerlo.",
+      ),
+      section(
+        "Il messaggio da personalizzare",
+        `Ciao a tutti!
+
+Il nostro piccolo è finalmente arrivato e siamo felicissimi di condividere con voi questa gioia immensa!
+
+Per goderci al meglio questi primi giorni insieme e prenderci cura del nostro cucciolo, ecco qualche piccolo accorgimento che vi chiediamo qualora voleste venirci a trovare a casa.
+
+Prima di venire a trovarci, contattate il papà per organizzarci al meglio. La mamma ha bisogno di riposare e recuperare le energie. Per rispettare i suoi tempi, quelli del nostro piccolo e per potere rendere unico il primo incontro con voi, avremmo bisogno di sapere quando vorrete venire a trovarci.
+
+Lavarsi bene le mani appena si entra in casa.
+
+Se possibile, togliersi le scarpe all'ingresso.
+
+Evitare di baciare il piccolo sul viso, sulle mani e sui piedini.
+
+Sappiamo che non vedete l'ora di conoscerlo e di riempirlo di coccole, e anche noi di costruire nuovi ricordi insieme a voi.
+
+Un abbraccio grande a tutti e a prestissimo!`,
+      ),
+      section(
+        "Prima di condividerlo",
+        "Potete adattare “papà”, “mamma” e “piccolo” alle persone, ai nomi e alle parole che usate in famiglia. Concordate insieme chi farà da riferimento per organizzare gli incontri.",
+        "Rileggete il messaggio e scegliete le richieste che desiderate comunicare. Potete aggiornare gli accordi sulle visite secondo le vostre esigenze e i vostri tempi.",
+      ),
+    ],
+    references: [],
+  }),
+  article({
     id: "recupero-puerperio",
     title: "Il puerperio: dare spazio al recupero",
     subtitle:

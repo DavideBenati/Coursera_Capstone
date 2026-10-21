@@ -63,25 +63,30 @@ export default function Article() {
               {section.heading}
             </Text>
             {section.paragraphs.map((paragraph, i) => (
-              <Text key={i} style={ui.body}>
+              <Text key={i} style={ui.body} selectable>
                 {paragraph}
               </Text>
             ))}
           </View>
         ))}
       </View>
-      <Text style={ui.heading}>Fonti e approfondimenti</Text>
-      {article.references.map((ref, index) => (
-        <Button
-          key={index}
-          variant="quiet"
-          onPress={() => {
-            if (ref.url.startsWith("https://")) void Linking.openURL(ref.url);
-          }}
-        >
-          {ref.label}
-        </Button>
-      ))}
+      {article.references.length > 0 && (
+        <>
+          <Text style={ui.heading}>Fonti e approfondimenti</Text>
+          {article.references.map((ref, index) => (
+            <Button
+              key={index}
+              variant="quiet"
+              onPress={() => {
+                if (ref.url.startsWith("https://"))
+                  void Linking.openURL(ref.url);
+              }}
+            >
+              {ref.label}
+            </Button>
+          ))}
+        </>
+      )}
       {article.videoUrl && (
         <Button
           variant="quiet"
