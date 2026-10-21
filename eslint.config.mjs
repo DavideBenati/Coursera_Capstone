@@ -7,6 +7,7 @@ export default tseslint.config(
       "**/.next/**",
       "**/.expo/**",
       "**/dist/**",
+      "**/dist-web/**",
       "**/next-env.d.ts",
       "**/expo-env.d.ts",
       "**/playwright-report/**",

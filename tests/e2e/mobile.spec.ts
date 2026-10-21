@@ -1,7 +1,10 @@
 import { expect, test, type Page } from "@playwright/test";
 
+const appPath = (path: string) =>
+  `${(process.env.MOBILE_BASE_PATH ?? "").replace(/\/$/, "")}${path}`;
+
 async function enterAsGuest(page: Page) {
-  await page.goto("/");
+  await page.goto(appPath("/"));
   await page.getByText("Esplora come ospite", { exact: true }).click();
   await expect(
     page.getByText("Ciao! Oggi facciamo un altro passo insieme.", {
@@ -84,7 +87,7 @@ test("article details, favorites and saved articles persist after reload", async
   await expect(
     page.getByLabel("Rimuovi dai salvati", { exact: true }),
   ).toBeVisible();
-  await page.goto("/saved");
+  await page.goto(appPath("/saved"));
   await expect(
     page.getByRole("button", {
       name: "Il primo trimestre, un passo alla volta",
@@ -129,7 +132,7 @@ test("postpartum onboarding, optional consent, export and local deletion", async
   const birthDate = new Date(Date.now() - 21 * 86_400_000)
     .toISOString()
     .slice(0, 10);
-  await page.goto("/");
+  await page.goto(appPath("/"));
   await page
     .getByRole("button", { name: "Iniziamo insieme", exact: true })
     .click();
@@ -261,7 +264,7 @@ test("postpartum onboarding, optional consent, export and local deletion", async
 test("partner onboarding works without another person’s health details", async ({
   page,
 }) => {
-  await page.goto("/");
+  await page.goto(appPath("/"));
   await page
     .getByRole("button", { name: "Iniziamo insieme", exact: true })
     .click();

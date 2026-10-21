@@ -3,6 +3,7 @@ node_modules/
 expo-env.d.ts
 .next/
 dist/
+dist-web/
 web-build/
 coverage/
 test-results/

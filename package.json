@@ -20,7 +20,8 @@
     "test": "vitest run",
     "test:e2e": "playwright test",
     "build:admin": "npm run build --workspace @nido/admin",
-    "build:mobile": "npm run export --workspace @nido/mobile"
+    "build:mobile": "npm run export --workspace @nido/mobile",
+    "build:web": "npm run export:web --workspace @nido/mobile && node scripts/prepare-web.mjs"
   },
   "devDependencies": {
     "@electric-sql/pglite": "0.5.11",

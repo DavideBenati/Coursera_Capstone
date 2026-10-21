@@ -4,6 +4,20 @@ MVP in italiano: app Expo/React Native, dashboard Next.js e integrazione Supabas
 
 ## Avvio locale
 
+### Demo web senza installazioni
+
+La versione statica dell'app dei genitori viene pubblicata nel ramo `nido-web`. Per attivarla su GitHub Pages, aprire [Settings → Pages](https://github.com/DavideBenati/Coursera_Capstone/settings/pages), scegliere **Deploy from a branch**, ramo **nido-web**, cartella **/(root)** e premere **Save**. GitHub mostrerà il collegamento al sito quando il deployment è terminato. La consultazione dal browser non richiede Node.js o installazioni sul dispositivo.
+
+Questa pubblicazione riguarda la demo dell'app dei genitori. Il pannello Next.js rimane un'applicazione separata. La demo conserva preferenze e progressi nel browser e mostra contenuti dimostrativi non ancora approvati clinicamente.
+
+Per rigenerare il sito dal codice, nell'ambiente di sviluppo:
+
+```sh
+NIDO_WEB_BASE_PATH=/Coursera_Capstone EXPO_OFFLINE=1 npm run build:web
+```
+
+L'output è in `apps/mobile/dist-web`, con `.nojekyll` e `404.html` per supportare navigazione e ricaricamento delle schermate su GitHub Pages.
+
 Node.js 24 e npm 11. Dopo aver estratto l'archivio:
 
 ```sh
