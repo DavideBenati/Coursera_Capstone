@@ -186,7 +186,7 @@ export const articles: Article[] = [
     id: "borsa-parto",
     title: "La borsa del parto, senza il superfluo",
     subtitle:
-      "Una base semplice da adattare alle indicazioni del punto nascita e alle tue abitudini.",
+      "Cosa preparare per te e il neonato, con i documenti da verificare insieme al punto nascita.",
     categoryId: "preparation",
     stage: "pregnancy",
     weekFrom: 28,
@@ -195,15 +195,39 @@ export const articles: Article[] = [
     sections: [
       section(
         "Prima della lista, la struttura",
+        "Questa lista riprende le informazioni del documento “Borsa parto.docx” condiviso per Nido. Il documento non riporta una revisione clinica: quantità e preferenze sono spunti da adattare, non requisiti validi per ogni struttura.",
         "Chiedi al punto nascita la lista aggiornata di ciò che viene fornito e di ciò che è utile portare. Le esigenze locali possono essere diverse dagli elenchi trovati online.",
-        "La checklist Nido è un esempio adattabile, non una prescrizione né un elenco di acquisti obbligatori. Puoi eliminare, sostituire o rimandare ciò che non ti serve.",
-        "Se qualcuno prepara la borsa con te, mostragli dove trovare le cose essenziali. Una disposizione chiara può essere più utile di avere molti oggetti.",
+        "Puoi organizzare la borsa in tre gruppi: per te, documenti e cambi del neonato. La checklist “Preparare la borsa per il parto” raccoglie gli stessi dettagli; nessun acquisto è obbligatorio.",
       ),
       section(
-        "Tre piccoli gruppi",
-        "Puoi separare documenti richiesti dalla struttura, oggetti per il tuo comfort e cambi indicati per il neonato. Verifica personalmente quali documenti sono necessari.",
-        "Scegli capi comodi e oggetti che usi già, senza cercare un corredo perfetto. Una busta separata per gli indumenti usati può semplificare l’organizzazione.",
-        "Per alimenti, bevande, dispositivi personali o altri oggetti con indicazioni specifiche, chiedi alla struttura. Non dare per scontato che ogni prodotto sia consentito o richiesto.",
+        "Per te: abbigliamento e comfort",
+        "2–3 camicie da notte aperte sul davanti, a mezza manica oppure con maniche lunghe ampie. L’apertura può rendere più comodo l’allattamento; maniche ampie o corte lasciano più libero il braccio per un eventuale accesso venoso. Il documento ricorda che nei reparti riscaldati può fare caldo anche in inverno: adatta i capi alla temperatura effettiva.",
+        "Mutandine assorbenti post parto. Il documento le preferisce alle mutande a rete con assorbente: scegli la soluzione più comoda per te, secondo le indicazioni della struttura. Cita anche mutande o assorbenti rinfrescanti, da verificare con il personale prima dell’uso.",
+        "Vestaglia con maniche ampie o senza polsini elastici; pantofole comode, possibilmente con plantare integrato, e infradito per la doccia.",
+      ),
+      section(
+        "Beauty e oggetti personali",
+        "Nel beauty: spazzolino e dentifricio, detergente intimo, asciugamani usa e getta, accappatoio in microfibra, burrocacao, shampoo, balsamo e bagnodoccia in formato mini.",
+        "Per i capelli e il comfort personale: elastici, mollettine, spazzola e, se la usi, acqua termale. Scegli prodotti che già tolleri e verifica eventuali indicazioni del reparto.",
+        "Caricabatterie con filo lungo: le prese possono essere distanti dal letto. Il documento propone anche frutta secca o una barretta energizzante; verifica con l’équipe se e quando puoi mangiare, tenendo conto delle tue esigenze e di eventuali allergie.",
+      ),
+      section(
+        "Accessori facoltativi da valutare",
+        "Il documento cita conchiglie raccoglilatte. Non sono indispensabili per tutte: se desideri usarle, chiedi indicazioni su utilità, igiene e modalità d’uso a chi ti segue nell’allattamento.",
+        "Sono citati anche olio essenziale di lavanda o neroli, idrolato di lavanda “per mamma e bimbo” e idrolato di elicriso “GE mamma”. La sigla GE non è spiegata nel documento.",
+        "Questa citazione non è un’indicazione d’uso: non applicare oli essenziali o idrolati sul neonato senza una specifica indicazione sanitaria. Prima di usarli per te o nell’ambiente del reparto, confrontati con il personale sanitario.",
+      ),
+      section(
+        "Documenti da tenere insieme",
+        "Tessera sanitaria e carta d’identità.",
+        "Ultime due ecografie refertate, referto della visita anestesiologica, ECG e ultimi esami ematici, se già effettuati e richiesti dalla struttura.",
+        "Referto del gruppo sanguigno e risultati dei tamponi vagino-rettali, se eseguiti. Il documento parla di gruppo sanguigno “della struttura in cui si partorisce”: chiedi quali referti vengono accettati e se occorrono adempimenti specifici, senza dare per necessario ripetere un esame.",
+      ),
+      section(
+        "La borsa del neonato",
+        "4–5 cambi, da adattare alla lista del punto nascita e alla stagione. Prepara ogni cambio in una bustina separata con nome e cognome del bambino, secondo le modalità richieste dalla struttura.",
+        "Ogni cambio può comprendere un body, preferibilmente con apertura a kimono, maglietta e pantalone oppure una tutina in cotone, calzini e cappellino. Verifica quali capi sono effettivamente richiesti.",
+        "Aggiungi una copertina o una mussola, se indicata dalla struttura.",
       ),
       section(
         "Una preparazione condivisa",
@@ -477,7 +501,7 @@ function checklist(
   title: string,
   description: string,
   stage: Stage,
-  labels: string[],
+  labels: (string | { label: string; note: string })[],
 ): Checklist {
   return {
     id,
@@ -487,22 +511,43 @@ function checklist(
     status: "published",
     approved: false,
     isDemo: true,
-    items: labels.map((label, index) => ({ id: `${id}-${index + 1}`, label })),
+    items: labels.map((item, index) => ({
+      id: `${id}-${index + 1}`,
+      ...(typeof item === "string" ? { label: item } : item),
+    })),
   };
 }
 export const checklists: Checklist[] = [
   checklist(
     "borsa",
     "Preparare la borsa per il parto",
-    "Un esempio da adattare alla lista del punto nascita: nessun acquisto è obbligatorio.",
+    "Per te, documenti e neonato: dettagli dal documento “Borsa parto.docx”, da confrontare con la lista del punto nascita.",
     "pregnancy",
     [
-      "Richiedere la lista aggiornata del punto nascita",
-      "Raccogliere i documenti indicati dalla struttura",
-      "Scegliere cambi comodi per te",
-      "Preparare i cambi del neonato richiesti",
-      "Aggiungere gli oggetti personali di uso quotidiano",
-      "Segnare cosa aggiungere all’ultimo momento",
+      {
+        label: "Richiedere la lista aggiornata del punto nascita",
+        note: "Verifica cosa fornisce la struttura e cosa portare. Quantità e preferenze del documento sono adattabili: nessun acquisto è obbligatorio.",
+      },
+      {
+        label: "Raccogliere i documenti indicati dalla struttura",
+        note: "Tessera sanitaria e carta d’identità; ultime 2 ecografie refertate; visita anestesiologica; ECG; ultimi esami ematici; referto del gruppo sanguigno; tamponi vagino-rettali. Porta i referti già disponibili e richiesti. Chiedi quali referti del gruppo sanguigno sono accettati: non presumere di dover ripetere esami.",
+      },
+      {
+        label: "Scegliere cambi comodi per te",
+        note: "2–3 camicie da notte aperte davanti, a mezza manica o manica lunga ampia; vestaglia con maniche ampie e senza polsini stretti; mutandine assorbenti post parto; pantofole comode, possibilmente con plantare, e infradito per la doccia. Per mutande o assorbenti rinfrescanti, chiedi prima al personale. La preferenza del documento per le mutandine assorbenti rispetto a rete più assorbente va adattata alle tue esigenze.",
+      },
+      {
+        label: "Preparare i cambi del neonato richiesti",
+        note: "4–5 cambi in bustine singole con nome e cognome: body, preferibilmente kimono, maglietta e pantalone oppure tutina in cotone, calzini e cappellino. Copertina o mussola se richiesta. Adatta quantità e capi alla struttura e alla stagione.",
+      },
+      {
+        label: "Aggiungere gli oggetti personali di uso quotidiano",
+        note: "Beauty con spazzolino, dentifricio, detergente intimo, asciugamani usa e getta, accappatoio in microfibra, burrocacao, shampoo, balsamo e bagnodoccia mini, elastici, mollettine, acqua termale e spazzola. Il documento cita anche conchiglie raccoglilatte, oli essenziali di lavanda o neroli e idrolati di lavanda e di elicriso: accessori facoltativi da valutare con il personale, non raccomandazioni d’uso. Non applicare oli o idrolati al neonato senza una specifica indicazione sanitaria. L’articolo “La borsa del parto, senza il superfluo” riporta i dettagli.",
+      },
+      {
+        label: "Segnare cosa aggiungere all’ultimo momento",
+        note: "Caricabatterie con filo lungo, perché le prese possono essere lontane dal letto. Frutta secca o barretta energizzante solo secondo le indicazioni dell’équipe su alimentazione e allergie. Annota chi può recuperare ciò che manca.",
+      },
     ],
   ),
   checklist(
