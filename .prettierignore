@@ -1,0 +1,9 @@
+node_modules
+.next
+.expo
+dist
+package-lock.json
+playwright-report
+test-results
+**/expo-env.d.ts
+**/next-env.d.ts

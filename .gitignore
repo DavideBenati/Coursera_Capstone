@@ -1,0 +1,17 @@
+node_modules/
+.expo/
+expo-env.d.ts
+.next/
+dist/
+web-build/
+coverage/
+test-results/
+playwright-report/
+.env
+.env.local
+.env.*.local
+*.tsbuildinfo
+*.log
+.DS_Store
+android/
+ios/
