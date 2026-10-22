@@ -41,7 +41,7 @@ L'assenza di configurazione abilita la demo. Una configurazione parziale o un ba
 
 - `apps/mobile`: onboarding facoltativo, quattro tab, letture, filtri, preferiti, checklist, profilo, consenso, esportazione e cancellazione.
 - `apps/admin`: dashboard, editor, anteprima, stati editoriali, categorie e checklist; API protette da autorizzazione verificata sul server.
-- `packages/core`: tipi, 13 articoli demo, 6 checklist, filtri, calcoli approssimativi e regole editoriali.
+- `packages/core`: tipi, 14 articoli demo, 6 checklist, filtri, calcoli approssimativi e regole editoriali.
 - `packages/data`, `supabase`: persistenza reale, migrazione PostgreSQL, RLS e storage privato.
 
 ```sh

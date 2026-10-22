@@ -57,7 +57,8 @@ type DemoArticle = Pick<
   | "imageUrl"
   | "sections"
   | "references"
->;
+> &
+  Partial<Pick<Article, "authorName" | "authorRole">>;
 const section = (heading: string, ...paragraphs: string[]): ArticleSection => ({
   heading,
   paragraphs,
@@ -74,8 +75,8 @@ const article = (value: DemoArticle): Article => ({
         .split(/\s+/).length / 180,
     ),
   ),
-  authorName: "Redazione Nido · esempio",
-  authorRole: "Contenuto dimostrativo, da revisionare",
+  authorName: value.authorName ?? "Redazione Nido · esempio",
+  authorRole: value.authorRole ?? "Contenuto dimostrativo, da revisionare",
   publishedAt: "2026-10-01T09:00:00.000Z",
   reviewedAt: null,
   reviewerName: null,
@@ -185,6 +186,8 @@ export const articles: Article[] = [
   article({
     id: "borsa-parto",
     title: "La borsa del parto, senza il superfluo",
+    authorName: "Dott.ssa Gaia Brunetti",
+    authorRole: "Autrice del documento originale · adattamento Nido",
     subtitle:
       "Cosa preparare per te e il neonato, con i documenti da verificare insieme al punto nascita.",
     categoryId: "preparation",
@@ -337,6 +340,8 @@ export const articles: Article[] = [
   article({
     id: "messaggio-nascita",
     title: "Messaggio di nascita per amici e parenti",
+    authorName: "Dott.ssa Gaia Brunetti",
+    authorRole: "Autrice del documento originale",
     subtitle:
       "Un testo da personalizzare per condividere la gioia e organizzare le prime visite a casa.",
     categoryId: "home",
@@ -374,6 +379,86 @@ Un abbraccio grande a tutti e a prestissimo!`,
         "Prima di condividerlo",
         "Potete adattare “papà”, “mamma” e “piccolo” alle persone, ai nomi e alle parole che usate in famiglia. Concordate insieme chi farà da riferimento per organizzare gli incontri.",
         "Rileggete il messaggio e scegliete le richieste che desiderate comunicare. Potete aggiornare gli accordi sulle visite secondo le vostre esigenze e i vostri tempi.",
+      ),
+    ],
+    references: [],
+  }),
+  article({
+    id: "sonno-sicuro",
+    title: "Sonno sicuro del neonato",
+    authorName: "Dott.ssa Gaia Brunetti",
+    authorRole: "Autrice del documento originale · adattamento Nido",
+    subtitle:
+      "Dieci indicazioni per preparare un ambiente di riposo sicuro, di giorno e di notte.",
+    categoryId: "home",
+    stage: "postpartum",
+    weekFrom: 0,
+    weekTo: 52,
+    imageUrl: photo("photo-1519689680058-324335c77eba"),
+    sections: [
+      section(
+        "Il riposo e l’ambiente che lo accoglie",
+        "Questa guida riorganizza il documento “sonno sicuro.docx” condiviso per Nido. È un contenuto educativo da revisionare, da discutere con il pediatra o con i professionisti che seguono il bambino.",
+        "Il sonno accompagna la crescita e lo sviluppo del neonato. Preparare un ambiente di riposo adatto aiuta a ridurre il rischio di SIDS, la morte improvvisa del lattante, senza poterlo azzerare.",
+      ),
+      section(
+        "1. Adagialo sempre sulla schiena",
+        "Metti il bambino a dormire in posizione supina, cioè a pancia in su. Vale per ogni sonnellino, sia di giorno sia di notte.",
+      ),
+      section(
+        "2. Scegli un materasso rigido e piano",
+        "Usa un materasso stabile, piano e adatto alla culla o al lettino. Evita superfici morbide, inclinate o improvvisate.",
+      ),
+      section(
+        "3. Lascia il lettino libero",
+        "Nella culla non mettere cuscini, peluche, paracolpi, coperte morbide, riduttori o altri accessori che possano ostacolare la respirazione. Il lenzuolo con angoli deve aderire bene al materasso.",
+      ),
+      section(
+        "4. Stessa stanza, superficie separata",
+        "Tieni la culla nella camera dei genitori almeno per i primi sei mesi e, se possibile, per il primo anno. Il bambino deve avere una superficie di riposo separata e sicura.",
+      ),
+      section(
+        "5. Proteggilo dal fumo e dalla sonnolenza degli adulti",
+        "Evita il fumo durante la gravidanza e dopo la nascita, e proteggi il bambino dal fumo passivo. Alcol, droghe e farmaci che provocano sonnolenza rendono particolarmente pericoloso condividere il letto: la superficie separata resta l’indicazione di riferimento anche in loro assenza.",
+        "Non addormentarti con il neonato su un divano o una poltrona: non sono superfici adatte al suo sonno.",
+      ),
+      section(
+        "6. Evita il surriscaldamento",
+        "Mantieni la stanza a una temperatura confortevole, vesti il bambino in modo adeguato e non coprirgli la testa durante il sonno.",
+        "Il documento indica orientativamente 19–21 °C. È un riferimento del testo, non una soglia universale: confronta le indicazioni sull’ambiente e sull’abbigliamento con chi segue il bambino.",
+      ),
+      section(
+        "7. Scegli un sacco nanna della misura corretta",
+        "Un sacco nanna adatto alla taglia, senza pesi, permette di tenere caldo il bambino evitando coperte libere vicino al viso. Il lenzuolo del materasso deve essere ben aderente; lascia bocca e naso liberi.",
+      ),
+      section(
+        "8. Sostegno all’allattamento, senza giudizi",
+        "L’allattamento al seno è associato a una riduzione del rischio di SIDS. Se desideri allattare, chiedi sostegno a un’ostetrica o a un professionista qualificato. Ogni famiglia merita supporto senza giudizi e le regole dell’ambiente sicuro valgono qualunque sia l’alimentazione scelta.",
+      ),
+      section(
+        "9. Attenzione al sonno fuori dal lettino",
+        "Seggiolini auto, sdraiette, passeggini, fasce e marsupi non sono tutti progettati per il sonno. Se il bambino si addormenta in un dispositivo non adatto a dormire, trasferiscilo appena possibile e in sicurezza su una superficie piana adatta, adagiandolo sulla schiena.",
+        "Durante il viaggio usa sempre il seggiolino auto omologato: effettua il trasferimento quando è possibile farlo in sicurezza, mai mentre il veicolo è in movimento.",
+      ),
+      section(
+        "10. Succhietto e vaccinazioni",
+        "Il succhietto può essere proposto durante il sonno, senza forzare il bambino. Se allatti al seno, attendi che l’allattamento sia ben avviato e chiedi indicazioni a chi ti segue. Se il bambino lo rifiuta, non insistere; durante il sonno evita cordini e accessori.",
+        "Segui il calendario vaccinale raccomandato con il pediatra. Succhietto, vaccinazioni e allattamento non sostituiscono le regole dell’ambiente di riposo.",
+      ),
+      section(
+        "Accompagnarlo al sonno con calma",
+        "Impara a riconoscere segnali di stanchezza come sbadigli, sguardo distolto o irritabilità. Una routine semplice, con luci soffuse e pochi stimoli, può accompagnare il momento della nanna.",
+        "Parlagli dolcemente e offrigli contatto, coccole e rassicurazione durante la veglia, rispettando i suoi bisogni. I risvegli notturni sono normali nei primi mesi di vita.",
+        "La vicinanza emotiva e il sonno sicuro possono convivere: dopo averlo consolato, allattato o coccolato, rimettilo nella sua culla, sulla schiena, quando è il momento di dormire.",
+      ),
+      section(
+        "Una nota sugli oli essenziali",
+        "Il documento propone anche l’uso di olio essenziale di lavanda in un diffusore. Questa guida non lo presenta come una misura di sonno sicuro e non riporta dosi o tempi d’uso. Prima di usare oli essenziali o diffusori nella stanza di un neonato, confrontati con il pediatra.",
+      ),
+      section(
+        "Un messaggio per i genitori",
+        "La SIDS è un evento raro ma molto doloroso. Nessuna singola misura può eliminare completamente il rischio; seguire le indicazioni per il sonno sicuro aiuta a ridurlo.",
+        "Non serve essere genitori perfetti. Conoscere le regole principali e condividerle con chi si prende cura del bambino può aiutare a organizzare la nanna con maggiore consapevolezza.",
       ),
     ],
     references: [],
@@ -565,7 +650,7 @@ export const checklists: Checklist[] = [
   checklist(
     "borsa",
     "Preparare la borsa per il parto",
-    "Per te, documenti e neonato: dettagli dal documento “Borsa parto.docx”, da confrontare con la lista del punto nascita.",
+    "Per te, documenti e neonato: dal documento “Borsa parto.docx” della Dott.ssa Gaia Brunetti, da confrontare con la lista del punto nascita.",
     "pregnancy",
     [
       {
